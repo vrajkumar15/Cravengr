@@ -11,6 +11,10 @@ public class Business {
 	private String name;
 	private String phone;
 	private String imageUrl;
+	private String ratingUrl;
+	//rating_img_url
+	//private String address[];
+	//location.display_address
 	
 	public String getName() {
 		return this.name;
@@ -24,6 +28,14 @@ public class Business {
 		return this.imageUrl;
 	}
 	
+	public String getRatingUrl() {
+		return this.ratingUrl;
+	}
+	
+	//public String[] getAddress() {
+	//	return this.address;
+	//}
+	
 	// Decodes business json into business model object
 	public static Business fromJson(JSONObject jsonObject) {
 		Business b = new Business();
@@ -33,6 +45,9 @@ public class Business {
         	b.name = jsonObject.getString("name");
         	b.phone = jsonObject.getString("display_phone");
         	b.imageUrl = jsonObject.getString("image_url");
+        	b.ratingUrl = jsonObject.getString("rating_img_url");
+        	//b.address = jsonObject.getString("location.display_address");
+        	
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
@@ -65,6 +80,6 @@ public class Business {
     
     @Override
     public String toString() {
-    	return id + " " + name + " " + phone + " " + imageUrl;
+    	return id + " " + name + " " + phone + " " + imageUrl + " " + ratingUrl;
     }
 }

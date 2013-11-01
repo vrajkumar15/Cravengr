@@ -10,11 +10,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.codepath.apps.cravengr.models.Business;
 import com.codepath.apps.cravengr.R;
+import com.codepath.apps.cravengr.BusinessAdapter;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.image.SmartImageView;
 
 public class YelpSearchActivity extends Activity {
 
@@ -22,6 +25,10 @@ public class YelpSearchActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_yelpsearch);
+		
+		ImageResult result = (ImageResult) getIntent().getSerializableExtra("result");
+		Toast.makeText(this, result.getSearchKeyword(), Toast.LENGTH_SHORT).show();
+		
 		YelpClient client = YelpClientApp.getRestClient();
 		client.search("kabab-and-currys", "sunnyvale", new JsonHttpResponseHandler() {
 			@Override
@@ -29,6 +36,9 @@ public class YelpSearchActivity extends Activity {
 				try {
 					JSONArray businessesJson = body.getJSONArray("businesses");
 					ArrayList<Business> businesses = Business.fromJson(businessesJson);
+					ListView lvResults = (ListView)findViewById(R.id.lvResults);
+					BusinessAdapter adapter = new BusinessAdapter(getBaseContext(), businesses);
+					lvResults.setAdapter(adapter);
 					Log.d("DEBUG", businesses.toString());
 				} catch (JSONException e) {
 					e.printStackTrace();
