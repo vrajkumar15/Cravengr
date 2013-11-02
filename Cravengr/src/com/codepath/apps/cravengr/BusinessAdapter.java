@@ -39,6 +39,10 @@ public class BusinessAdapter extends ArrayAdapter<Business> {
 		TextView phone = (TextView) view.findViewById(R.id.tvPhone);
 		phone.setText(Html.fromHtml(business.getPhone()));
 		
+		ImageView ratingView = (ImageView) view.findViewById(R.id.ivRating);
+		ImageLoader.getInstance().displayImage(business.getRatingUrl(), ratingView);
+
+		
 		return view;
 		
 	}
