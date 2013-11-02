@@ -23,14 +23,23 @@ public class YelpSearchActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		String contentKeywords = new String(); // The description of the image (example: "Spicy Thai Fried Rice | Yelp")
+		String refinedKeywords = new String(); // Cleaned up keyword string for the main Yelp search 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_yelpsearch);
 		
 		ImageResult result = (ImageResult) getIntent().getSerializableExtra("result");
-		Toast.makeText(this, result.getSearchKeyword(), Toast.LENGTH_SHORT).show();
+		
+		contentKeywords = result.getSearchKeyword();
+		Log.d("DEBUG", contentKeywords);
+		
+		refinedKeywords = getRefinedKeywordQuery(contentKeywords);
+		Log.d("DEBUG", refinedKeywords);
+		// TODO: if(looks suspectful junk string) use original search keyword vs image description;
+		Toast.makeText(this, refinedKeywords, Toast.LENGTH_SHORT).show();
 		
 		YelpClient client = YelpClientApp.getRestClient();
-		client.search("kabab-and-currys", "sunnyvale", new JsonHttpResponseHandler() {
+		client.search(refinedKeywords, "Sunnyvale", new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int code, JSONObject body) {
 				try {
@@ -50,6 +59,24 @@ public class YelpSearchActivity extends Activity {
 				Toast.makeText(YelpSearchActivity.this, "FAIL", Toast.LENGTH_LONG).show();
 			}
 		});
+	}
+
+	private String getRefinedKeywordQuery(String contentKeywords) {
+		/* Algorithm for keyword cleanup:
+		 * 
+		 * (Order matters as-is, otherwise you end up with junk words)
+		 * Chop the "| Yelp" string
+		 * Chop html encodings like "&amp;", "&#39;", "&quot;"
+		 * Chop all special characters and have only alphabets [a-z,A-Z], but preserve space between words
+		 * 
+		 */
+		
+		contentKeywords = contentKeywords.replace("| Yelp", "");
+		contentKeywords = contentKeywords.replace("&amp;", "");
+		contentKeywords = contentKeywords.replace("&#39;", "");
+		contentKeywords = contentKeywords.replace("&quot;", "");
+		contentKeywords = contentKeywords.replaceAll("[^a-zA-Z\\s]", "");
+		return contentKeywords;
 	}
 
 	@Override
