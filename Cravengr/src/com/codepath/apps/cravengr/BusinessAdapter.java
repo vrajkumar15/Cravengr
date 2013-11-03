@@ -32,12 +32,20 @@ public class BusinessAdapter extends ArrayAdapter<Business> {
 		ImageView imageView = (ImageView) view.findViewById(R.id.ivBusiness);
 		ImageLoader.getInstance().displayImage(business.getImageUrl(), imageView);
 		
+//		String formattedName = "<b>" + tweet.getUser().getName() + "</b>" + " <small><font color= '#777777>@ " +
+//				tweet.getUser().getScreenName() + "</font></small>";
+		
 		TextView nameView = (TextView) view.findViewById(R.id.tvName);
-		String formattedName =  business.getName();
-		nameView.setText(Html.fromHtml(formattedName));
+		String formatted_name = "<b><small>" + business.getName() + "</small></b>";
+		nameView.setText(Html.fromHtml(formatted_name));
 		
 		TextView phone = (TextView) view.findViewById(R.id.tvPhone);
-		phone.setText(Html.fromHtml(business.getPhone()));
+		String formatted_phone = "<small>" + business.getPhone() + "</small>";
+		phone.setText(Html.fromHtml(formatted_phone));
+		
+		TextView address = (TextView) view.findViewById(R.id.tvAdd);
+		String formatted_address = "<small>" + business.getLocation().getAddress() + "</small>";
+		address.setText(Html.fromHtml(formatted_address));
 		
 		ImageView ratingView = (ImageView) view.findViewById(R.id.ivRating);
 		ImageLoader.getInstance().displayImage(business.getRatingUrl(), ratingView);

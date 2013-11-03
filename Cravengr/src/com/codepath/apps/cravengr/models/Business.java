@@ -6,7 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Business {
+public class Business extends BaseModel {
+    private Location location;
+
 	private String id;
 	private String name;
 	private String phone;
@@ -15,6 +17,11 @@ public class Business {
 	//rating_img_url
 	//private String address[];
 	//location.display_address
+
+	
+    public Location getLocation() {
+        return location;
+    }
 	
 	public String getName() {
 		return this.name;
@@ -41,6 +48,8 @@ public class Business {
 		Business b = new Business();
         // Deserialize json into object fields
 		try {
+            b.jsonObject = jsonObject;
+            b.location = Location.fromJson(jsonObject.getJSONObject("location"));
 			b.id = jsonObject.getString("id");
         	b.name = jsonObject.getString("name");
         	b.phone = jsonObject.getString("display_phone");
