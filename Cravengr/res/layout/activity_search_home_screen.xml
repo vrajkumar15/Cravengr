@@ -16,6 +16,7 @@
         android:layout_alignBaseline="@+id/btnSubmit"
         android:layout_alignBottom="@+id/btnSubmit"
         android:layout_toRightOf="@+id/btnSubmit"
+        android:onClick="onClickFeelingHungry"
         android:text="@string/IFL" />
 
     <Button

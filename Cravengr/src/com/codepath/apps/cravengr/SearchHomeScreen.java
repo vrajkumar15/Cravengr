@@ -30,4 +30,12 @@ public class SearchHomeScreen extends Activity {
 		i.putExtra("craveQuery", etSearchQuery.getText().toString());
 		startActivity(i);
 	}
+	
+	public void onClickFeelingHungry (View v){
+		
+		etSearchQuery = (EditText) findViewById(R.id.etSearchQuery);
+		Intent i = new Intent(getApplicationContext(), YelpSearchActivity.class);
+		i.putExtra("craveQuery", etSearchQuery.getText().toString());
+		startActivity(i);
+	}
 }

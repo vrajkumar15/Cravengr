@@ -2,6 +2,7 @@ package com.codepath.apps.cravengr;
 
 import java.util.ArrayList;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,9 +29,17 @@ public class YelpSearchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_yelpsearch);
 		
-		ImageResult result = (ImageResult) getIntent().getSerializableExtra("result");
 		
-		contentKeywords = result.getSearchKeyword();
+		if(getIntent().getStringExtra("craveQuery") != null){
+			// I'm feeling Hungry case
+			contentKeywords = getIntent().getStringExtra("craveQuery");
+			if(contentKeywords.isEmpty()){
+				contentKeywords="Biryani"; //Default case
+			}
+		} else { // call from Yelp Activity
+			ImageResult result = (ImageResult) getIntent().getSerializableExtra("result");	
+			contentKeywords = result.getSearchKeyword();
+		}
 		Log.d("DEBUG", contentKeywords);
 		
 		refinedKeywords = getRefinedKeywordQuery(contentKeywords);
