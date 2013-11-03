@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/btnSearch"
         android:ems="10"
-        android:hint="@string/query_hint" >
+        android:hint="@string/craving_hint" >
 
         <requestFocus />
     </EditText>
