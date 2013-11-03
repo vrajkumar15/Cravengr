@@ -42,7 +42,7 @@ public class GoogleImageSearchActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_google_image_search);
-		Toast.makeText(this, getIntent().getStringExtra("craveQuery"), Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, getIntent().getStringExtra("craveQuery"), Toast.LENGTH_SHORT).show();
 		
 		onImageSearch(getIntent().getStringExtra("craveQuery"));
 		
@@ -62,16 +62,6 @@ public class GoogleImageSearchActivity extends Activity {
 	
 	}
 	
-	
-	
-//	public void onAdvSearch(View v){
-//		//Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
-//		Intent i = new Intent(this, AdvSearchActivity.class);
-//		//startActivity(i);
-//		startActivityForResult(i, REQUEST_CODE);
-//	}
-	
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,16 +73,8 @@ public class GoogleImageSearchActivity extends Activity {
 	
 	public void onSetting(MenuItem m){
 		Toast.makeText(this, "settings clicked", Toast.LENGTH_SHORT).show();
-		//Intent i = new Intent(this, AdvSearchActivity.class);
-		//startActivity(i);
-		//startActivityForResult(i, REQUEST_CODE);
 	
 	}
-	
-   // i.putExtra("imagesize", imageS.getText().toString() );
-   // i.putExtra("colorfilter", colorF.getText().toString() );
-   // i.putExtra("imagetype", imageT.getText().toString() );
-    //i.putExtra("sitefilter", siteF.getText().toString() );
     
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent i){
@@ -104,10 +86,9 @@ public class GoogleImageSearchActivity extends Activity {
 				 imageType = i.getStringExtra("imagetype");
 				 siteFilter = i.getStringExtra("sitefilter");
 				  
-	    		  //AdvSearch data = (AdvSearch) getIntent().getSerializableExtra("criteria");
 			     Toast.makeText(this, imageSize + colorFilter + imageType + siteFilter , Toast.LENGTH_SHORT).show();
 			  }
-			  }
+		  }
 	}
 
 	public void setupViews() {
