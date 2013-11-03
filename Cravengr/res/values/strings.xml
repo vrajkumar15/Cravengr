@@ -9,5 +9,9 @@
     <string name="title_activity_search">Cravengr</string>
     <string name="query_hint">Enter Search Item</string>
     <string name="title_activity_google_image_search">Cravengr</string>
+    <string name="title_activity_search_home_screen">SearchHomeScreen</string>
+    <string name="craving_hint">what are you craving?</string>
+    <string name="btnSubmit">cravenge!</string>
+    <string name="IFL">I\'m hungry!</string>
 
 </resources>

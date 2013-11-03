@@ -42,6 +42,8 @@ public class GoogleImageSearchActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_google_image_search);
+		Toast.makeText(this, getIntent().getStringExtra("craveQuery"), Toast.LENGTH_SHORT).show();
+		
 		setupViews();
 		imageAdapter = new ImageResultArrayAdapter(this, imageResults);
 		gvResults.setAdapter(imageAdapter);
