@@ -36,7 +36,7 @@ public class YelpSearchActivity extends Activity {
 		refinedKeywords = getRefinedKeywordQuery(contentKeywords);
 		Log.d("DEBUG", refinedKeywords);
 		// TODO: if(looks suspectful junk string) use original search keyword vs image description;
-		Toast.makeText(this, refinedKeywords, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, refinedKeywords, Toast.LENGTH_SHORT).show();
 		
 		YelpClient client = YelpClientApp.getRestClient();
 		client.search(refinedKeywords, "Sunnyvale", new JsonHttpResponseHandler() {

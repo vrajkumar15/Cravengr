@@ -125,8 +125,8 @@ public class GoogleImageSearchActivity extends Activity {
 		//		+ "&v=1.0&q=" + Uri.encode(query) + "&as_filetype=" + imageType + "&as_sitesearch=" + siteFilter + "&imgcolor=" + colorFilter + "&imgsz=" + imageSize + "&userip=" + "98.138.6.68";
 		String searchUrl = "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&" + "start=" + 0
 				+ "&v=1.0&q=" + Uri.encode(query) + "&as_sitesearch=" + "yelp.com";
-		Toast.makeText(this, "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&" + "start=" + 0
-				+ "&v=1.0&q=" + Uri.encode(query), Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&" + "start=" + 0
+		//		+ "&v=1.0&q=" + Uri.encode(query), Toast.LENGTH_SHORT).show();
 		client.get(searchUrl, 
 			 new JsonHttpResponseHandler() {
 			@Override

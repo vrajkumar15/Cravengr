@@ -30,7 +30,7 @@
         android:layout_alignBottom="@+id/etQuery"
         android:layout_alignParentRight="true"
         android:onClick="onImageSearch"
-        android:text="SEARCH" />
+        android:text="cravenge!" />
 
     <GridView
         android:id="@+id/gvResults"
