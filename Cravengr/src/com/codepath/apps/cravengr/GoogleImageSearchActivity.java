@@ -44,6 +44,8 @@ public class GoogleImageSearchActivity extends Activity {
 		setContentView(R.layout.activity_google_image_search);
 		Toast.makeText(this, getIntent().getStringExtra("craveQuery"), Toast.LENGTH_SHORT).show();
 		
+		onImageSearch(getIntent().getStringExtra("craveQuery"));
+		
 		setupViews();
 		imageAdapter = new ImageResultArrayAdapter(this, imageResults);
 		gvResults.setAdapter(imageAdapter);
@@ -115,16 +117,16 @@ public class GoogleImageSearchActivity extends Activity {
 		
 	}
 	
-//as_filetype=jpg, as_sitesearch=photobucket.com,imgcolor=blackimgsz=icon
-	
-	public void onImageSearch(View v){
+	public void onImageSearchClickHandler(View v){
 		String query = etQuery.getText().toString();
+		onImageSearch(query);
+	}
+	
+	public void onImageSearch(String query){
+		
 		//Toast.makeText(this, "Searching for " + query, Toast.LENGTH_SHORT).show();
 		AsyncHttpClient client = new AsyncHttpClient();
-		//https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=yahoo
-		//String searchUrl = "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&" + "start=" + 0 + "&v=1.0&q=" + Uri.encode(query);
-		//String searchUrl = "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&" + "start=" + 0
-		//		+ "&v=1.0&q=" + Uri.encode(query) + "&as_filetype=" + imageType + "&as_sitesearch=" + siteFilter + "&imgcolor=" + colorFilter + "&imgsz=" + imageSize + "&userip=" + "98.138.6.68";
+		
 		String searchUrl = "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&" + "start=" + 0
 				+ "&v=1.0&q=" + Uri.encode(query) + "&as_sitesearch=" + "yelp.com";
 		//Toast.makeText(this, "https://ajax.googleapis.com/ajax/services/search/images?rsz=8&" + "start=" + 0
