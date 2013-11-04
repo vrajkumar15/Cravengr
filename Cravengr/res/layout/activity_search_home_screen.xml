@@ -38,4 +38,14 @@
         android:ems="10"
         android:hint="@string/craving_hint" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etSearchQuery"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="@string/quote"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>
