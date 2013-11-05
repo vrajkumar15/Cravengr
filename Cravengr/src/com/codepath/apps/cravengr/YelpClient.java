@@ -41,7 +41,7 @@ public class YelpClient extends OAuthBaseClient {
         RequestParams params = new RequestParams();
         params.put("term", term);
         params.put("location", location);
-        params.put("sort", "2");
+        //params.put("sort", "2");
         client.get(apiUrl, params, handler);
     }
 
