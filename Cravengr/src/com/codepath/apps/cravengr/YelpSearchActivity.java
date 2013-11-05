@@ -2,7 +2,6 @@ package com.codepath.apps.cravengr;
 
 import java.util.ArrayList;
 
-import org.apache.commons.codec.binary.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,16 +11,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.apps.cravengr.models.Business;
-import com.codepath.apps.cravengr.R;
-import com.codepath.apps.cravengr.BusinessAdapter;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.image.SmartImageView;
 
 public class YelpSearchActivity extends Activity {
 
+	TextView tvResultHeader;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		String contentKeywords = new String(); // The description of the image (example: "Spicy Thai Fried Rice | Yelp")
@@ -46,6 +44,11 @@ public class YelpSearchActivity extends Activity {
 		Log.d("DEBUG", refinedKeywords);
 		// TODO: if(looks suspectful junk string) use original search keyword vs image description;
 		//Toast.makeText(this, refinedKeywords, Toast.LENGTH_SHORT).show();
+		
+		// Rendering the activity screen
+		
+		tvResultHeader = (TextView) findViewById(R.id.tvYelpResultHeader);
+		tvResultHeader.setText("Results for: " + "\""+ refinedKeywords + " \"");
 		
 		YelpClient client = YelpClientApp.getRestClient();
 		client.search(refinedKeywords, "Sunnyvale", new JsonHttpResponseHandler() {
